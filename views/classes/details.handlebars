@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Elearn</title>
+	<style type="text/css">
+		body {
+			background-image: linear-gradient(to bottom right, rgb(0, 255, 195), rgb(123, 0, 255));
+		}
+		h2 {
+			font-weight: 600;
+			color: rgb(3, 76, 212);
+		}
+		p {
+			font-size: larger;
+		}
+	</style>
+</head>
+<body>
+	<h2>{{class.title}}</h2>
+<p>
+	<strong>Instructor: </strong> {{class.instructor}}
+</p>
+<p>
+	{{class.description}}
+</p>
+<ul class="alt">
+	{{#each class.lessons}}
+		<li>{{lesson_title}}</li>
+	{{/each}}
+</ul>
+
+{{#if user}}
+	<form id="classRegForm" method="post" action="/{{type}}s/classes/register">
+		<input type="hidden" name="student_id" value="{{user._id}}">
+		<input type="hidden" name="class_id" value="{{class._id}}">
+		<input type="hidden" name="class_title" value="{{class.title}}">
+		<input style="font-weight: 600; background-color: rgb(3, 76, 212);" type="submit" class="button" value="Register For This Class">
+	</form>
+{{else}}
+	<p>You must be logged in to register for this class</p>
+{{/if}}
+</body>
+</html>

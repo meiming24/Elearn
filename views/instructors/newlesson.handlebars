@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Elearn</title>
+	<style type="text/css">
+		h2 {
+			font-weight: 600;
+			color: rgb(246, 134, 229);
+		}
+		form {
+			margin-top: 40px;
+		}
+		body {
+            background-image: linear-gradient(to bottom right, rgb(174, 0, 255), rgb(106, 0, 255));
+		}
+	</style>
+</head>
+<body>
+	<h2>Add Lesson</h2>
+	<form id="regForm" method="post" action="/instructors/classes/{{class_id}}/lessons/new">
+	<div>
+		<label style="font-size: 20px; font-weight: 600; color: rgb(246, 134, 229);">Lesson Number: </label>
+		<input style="width: 75%" type="text" name="lesson_number" placeholder="Lesson's number...">
+	</div><br />
+	<div>
+		<label style="font-size: 20px; font-weight: 600; color: rgb(246, 134, 229);">Lesson Title: </label>
+		<input style="width: 75%" type="text" name="lesson_title" placeholder="Lesson's title...">
+	</div><br />
+	<div>
+		<label style="font-size: 20px; font-weight: 600; color: rgb(246, 134, 229); margin-top: -170px">Lesson Body: </label>
+		<textarea style="width: 75%; white-space: pre;" name="lesson_body" placeholder="Lessons's detail..."></textarea>
+	</div><br />
+	<div>
+		<input style="background-color: rgb(246, 134, 229); font-weight: 600; margin-left: 180px" type="submit" value="Add Lesson">
+	</div>
+	</form>
+</body>
+</html>

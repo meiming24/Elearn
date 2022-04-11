@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Elearn</title>
+	<script src="https://kit.fontawesome.com/8d89ff3497.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		.leftcolumn {
+  			float: left;
+  			width: 90%;
+		}
+
+		.card {
+  			background-color: white;
+  			padding: 20px;
+  			margin-top: 20px;
+			border-radius: 10px;
+		}
+		.card-header {
+			background-color: rgb(255, 128, 0);
+			margin-top: -30px;
+			margin-left: -20px;
+			width: 754.5px;
+			height: 45px;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+
+		.card-header > h4 {
+			font-size: 30px;
+			font-weight: 600;
+			margin-left: 10px;
+		}
+
+		.row:after {
+  			content: "";
+  			display: table;
+  			clear: both;
+		}
+		body {
+			background-image: url("../images/forum-background.jpg");
+			background-repeat: no-repeat;
+			background-size: auto;
+			background-attachment: fixed;
+		}
+		
+		h2 {
+			color: rgb(255, 255, 0);
+			font-weight: 600;
+		}
+
+		.search-container {
+			float: right;
+			margin-right: 85px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Elearn Forum</h2>
+	<br>
+	<a class="button" style="font-weight: 700;" href="/threads/add">Create thread</a>
+
+	<div class="search-container">
+    	<form action="../../controller/action.js"> 
+      		<input type="text" placeholder="Search..." name="search">
+      		<button type="submit"><i class="fa fa-search"></i></button>
+    	</form>
+  	</div>
+
+	{{#each threads}}
+		<div class="row">
+  			<div class="leftcolumn">
+   	 			<div class="card">
+					<div class="card-header">
+						<h4>{{title}}</h4> 
+					</div>
+					
+					<div style="width: 2%; height: 2%; margin-left: 705.5px; margin-top: -42.5px">	
+						<form method="post" action="/threads/delete">
+							<input type="hidden" name="threadId" value="{{_id}}">
+							<button style="background:none;padding:0px;border:none;" type="submit"><i style="color: rgb(255, 0, 0); font-size: large;" class="fa-solid fa-circle-minus"></i></button>
+						</form>
+					</div>
+
+					<div style="width: 2%; height: 2%; margin-top: -40px; margin-left: 680px">
+						<form method="get" action="/threads/edit"> 
+							<input type="hidden" name="	" value="{{_id}}">
+							<input type="hidden" name="username" value="{{username}}">
+							<button style="background:none;padding:0px;border:none;" type="submit"><i style="color: rgb(247, 248, 249); font-size: large;" class="fa-solid fa-pen-to-square"></i></button>
+						</form>
+					</div>
+
+						<h5>{{username}}</h5>
+      					<p>{{content}}</p>
+						<a href="/threads/{{_id}}/details" style="font-weight: 700;">View Details</a> 
+    			</div>
+			</div>
+		</div>
+	{{/each}}
+</body>
+</html>

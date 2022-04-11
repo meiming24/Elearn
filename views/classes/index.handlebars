@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Elearn</title>
+	<style type="text/css">
+		h2 {
+			color: rgb(255, 98, 0);
+		}
+
+		body {
+			background-image: url("../images/class-bg.jpg");
+			background-size: 1550px 750px;
+		}
+	</style>
+</head>
+<body>
+	<h2><b>Classes</b></h2>
+	<a class="button" style="font-weight: 600; background-color: rgb(0, 128, 111)" href="/classes/add">Create class</a>
+	{{#each classes}}
+	<div class="block">
+		<h3>{{title}}</h3>
+		<p>
+			{{description}}
+		</p>
+		<p>Instructor: <strong>{{instructor}}</strong></p>
+		<a class="button" href="/classes/{{_id}}/details" style="font-weight: 600;">Class Details</a>
+	</div>
+	{{/each}}
+</body>
+</html>

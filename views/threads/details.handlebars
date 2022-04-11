@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elearn</title>
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin:0;
+	        padding:0 0 0 0;
+            background-image: linear-gradient(to bottom right, red, yellow);
+			background-repeat: no-repeat;
+			background-size: auto;
+			background-attachment: fixed;
+        }
+        
+        button {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            font-size: 14px;
+            padding: 4px 8px;
+            color: rgba(0, 0, 0, 0.85);
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+        
+        button:hover, button:focus, button:active {
+            cursor: pointer;
+            background-color: #ecf0f1;
+        }
+
+        .comment-thread {
+            width: 700px;
+            max-width: 100%;
+            margin: auto;
+            padding: 0 30px;
+            background-color: #fff;
+            border: 1px solid transparent; 
+            border-radius: 10px;
+        }
+        
+        .m-0 {
+            margin: 0;
+        }
+
+        .sr-only {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .comment {
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .comment-heading {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            font-size: 14px;
+        }
+
+        .comment-info {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .comment-author {
+            color: rgba(0, 0, 0, 0.85);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .comment-author:hover {
+            text-decoration: underline;
+        }
+    
+        .replies {
+            margin-left: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    {{#if user}}
+
+        <div class="comment-thread">
+            <div class="comment" id="comment-1">
+                <div class="comment-heading">
+                    
+                    <div class="comment-info">
+                        <a class="comment-author">{{thread.username}}</a>
+                            <p class="m-0">
+                                {{thread.title}} &bull; {{thread.date}}
+                            </p>
+                    </div>
+
+                </div>
+
+            <div class="comment-body">
+            
+                <p>
+                    {{thread.content}}
+                </p>
+                        
+            </div>
+
+            {{#each thread.comments}}
+            <div class="replies">
+            
+                <div class="comment" id="comment-2">
+                
+                    <div class="comment-heading">
+                    
+                        <div class="comment-info">
+                            <a class="comment-author">{{username}}</a>
+                        
+                            <p class="m-0">
+                                {{title}} &bull; {{date}}
+                            </p>
+                        </div>
+                    </div>
+
+                
+                    <div class="comment-body">
+                        <p>
+                            {{content}} 
+                        </p>
+                    </div>            
+                </div>
+            </div>
+            {{/each}}                                   
+                <form id="cmtForm" method="post" action="http://localhost:3000/threads/{{thread._id}}/details">
+                    <div>
+                        <input type="text" name="comment_content" value="{{content}}" style="width: 79%">
+                        <input type="submit" value="Add Comment">
+                        <input type="hidden" name="threadId" value="{{thread._id}}">
+                    </div>
+                </form> 
+            </div>
+        </div>
+
+    {{else}}
+	    <p>You must be logged in to comment on this post</p>
+    {{/if}}
+</body>
+</html>

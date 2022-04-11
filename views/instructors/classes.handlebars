@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Elearn</title>
+	<style type="text/css">
+		* {
+  			font-family: sans-serif; /* Change your font family */
+		}
+
+		body {
+			background-image: url("../images/instruct-bg.jpg");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+		}
+
+		.content-table {
+  			border-collapse: collapse;
+  			margin: 25px 0;
+ 	 		font-size: 0.9em;
+  			min-width: 400px;
+  			border-radius: 5px 5px 0 0;
+  			overflow: hidden;
+  			box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+			background-color: #ffffff;
+		}
+
+		.content-table thead tr {
+  			background-color: #009879;
+  			color: #ffffff;
+  			text-align: left;
+  			font-weight: bold;
+		}
+
+		.content-table th,
+		.content-table td {
+  			padding: 12px 15px;
+		}
+
+		.content-table tbody tr {
+  			border-bottom: 1px solid #dddddd;
+		}
+
+		.content-table tbody tr:nth-of-type(even) {
+  			background-color: #f3f3f3;
+		}
+
+		.content-table tbody tr:last-of-type {
+  			border-bottom: 2px solid #009879;
+		}
+
+		.content-table tbody tr.active-row {
+  			font-weight: bold;
+  			color: #009879;
+		}
+
+	</style>
+</head>
+<body>
+	<h2 style="font-weight: 600; color:#009879">{{instructor.first_name}}'s Classes</h2>
+	<table class="content-table">
+  	<thead>
+    	<tr>
+      		<th style="font-size: large; font-weight: 600;">Class ID</th>
+      		<th style="font-size: large; font-weight: 600;">Class Name</th>
+      		<th style="font-size: large; font-weight: 600;">View</th>
+      		<th style="font-size: large; font-weight: 600;">Add Lessons</th>
+    	</tr>
+  	</thead>
+
+  	<tbody>
+    	{{#each instructor.classes}}
+			<tr>
+				<td>{{class_id}}</td>
+				<td style="font-size: larger;">{{class_title}}</td>
+				<td><a style="background-color: rgb(0, 128, 105)" class="button" href="/classes/{{class_id}}/lessons">View Lessons</a></td>
+				<td><a class="button" href="/instructors/classes/{{class_id}}/lessons/new">Add Lesson</a></td>
+			</tr>
+		{{/each}}
+  	</tbody>
+	</table>
+
+</body>
+</html>

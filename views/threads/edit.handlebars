@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elearn</title>
+	<style type="text/css">
+		body {
+			background-image: url("../images/add-bg.jpg");
+			background-repeat: no-repeat;
+			background-size: 1550px 750px;
+			background-attachment: fixed;
+		}
+	</style>
+</head>
+<body>
+    <h2 style="color: rgb(0, 225, 255); font-weight: 700;">Edit A Thread</h2>
+    {{#if errors}}
+		{{#each errors}}
+			<div class="notice error"><i class="icon-remove-sign icon-large"></i> {{msg}}
+			<a href="#close" class="icon-remove"></a></div>
+		{{/each}}
+		
+    {{/if}}
+	{{#if user}}
+	<form id="thdForm" method="post" action="http://localhost:3000/threads/edit">
+		<input type="hidden" name="threadId" id="threadId">
+		<input type="hidden" name="username" id="username">
+		<div>
+			<label style="font-size: 25px; font-weight: 600; color: rgb(0, 255, 183)">Title: </label>
+			<input type="text" name="thread_title" value="{{title}}" style="width: 70%; height: 35px" placeholder="Enter your title here...">
+		</div><br/>
+		<div>
+			<label style="font-size: 25px; font-weight: 600; color: rgb(0, 255, 183); margin-top: -320px">Content: </label>
+			<textarea id="textarea1" name="thread_content" value="{{content}}" style="width: 70%; height: 350px; font-size: 15px; white-space: pre;" placeholder="Enter your content here..."></textarea>
+		</div><br />
+		<div>
+			<input type="submit" value="Add Thread" style="background-color: rgb(255, 137, 3); font-weight: bold; margin-left: 180px">
+		</div>
+	</form>
+	{{else}}
+		<p>Please login to add threads and view comments</p>	
+	{{/if}}
+
+	<script>
+		document.getElementById('threadId').value = getValue("threadId");
+		document.getElementById('username').value = getValue("username");
+		function getValue(key) {
+  			let url = new URL(window.location.href);
+			return url.searchParams.get(key);
+		}
+	</script>
+
+</body>
+</html>

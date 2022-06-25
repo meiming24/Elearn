@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "bcryptjs": "*",
